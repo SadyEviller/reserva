@@ -1,33 +1,27 @@
-create database sistema_reserva;
-
-use sistema_reserva;
-
+create database reserva;
+use reserva;
 create table item(
     id int auto_increment primary key,
-    nome varchar(20),
+    nome varchar(20) not null,
     descricao varchar(255),
-    patrimonio varchar(6)
+    patrimonio varchar(6) not null
 );
-
 create table servidor(
     id int auto_increment primary key,
-    nome varchar(50),
-    matricula varchar(20),
-    cpf varchar(14),
+    nome varchar(50) not null,
+    matricula varchar(20) not null unique,
+    cpf varchar(14) not null unique,
     telefone varchar(14),
     email varchar(50),
     endereco varchar(100),
-    dtn date
+    dtn date not null
 );
-
 create table emprestimo(
-    id int auto_increment primary key,
-    id_item int,
-    id_servidor int,
-    data_emprestimo datetime,
-    data_devolucao datetime,
+    id srial primary key,
+    id_item int not null,
+    id_servidor int not null,
+    data_emprestimo datetime not null,
+    data_devolucao datetime not null,
     foreign key (id_item) references item (id),
     foreign key (id_servidor) references servidor (id)
 );
-
-
